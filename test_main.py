@@ -81,7 +81,7 @@ def test_fail_insert():
   proc.wait()
 
 
-def test_blank_line():
+def test_bad_line():
   proc = prepare()
 
   send_data(proc.stdin, "Y")
@@ -100,7 +100,7 @@ def test_table_limit():
     send_data(proc.stdin, "insert {0} name{0} email{0}".format(i))
     assert "db> Executed." == read_out(proc.stdout)
   
-  send_data(proc.stdin, "insert 1400 name email")
+  send_data(proc.stdin, "insert 1301 name email")
   assert "db> Error: table full." == read_out(proc.stdout)
 
   send_data(proc.stdin, ".exit")
